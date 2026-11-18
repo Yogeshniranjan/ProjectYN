@@ -1,0 +1,95 @@
+@EmployeeManagement.Api_HostAddress = http://localhost:5046
+
+### List employees
+GET {{EmployeeManagement.Api_HostAddress}}/api/employees?page=1&pageSize=10
+Accept: application/json
+
+### Search and filter employees
+GET {{EmployeeManagement.Api_HostAddress}}/api/employees?search=avery&departmentId=1
+Accept: application/json
+
+### Get an employee
+GET {{EmployeeManagement.Api_HostAddress}}/api/employees/1
+Accept: application/json
+
+### Create an employee
+POST {{EmployeeManagement.Api_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "departmentId": 1,
+  "firstName": "Morgan",
+  "lastName": "Reed",
+  "email": "morgan.reed@example.com",
+  "phoneNumber": "555-0103",
+  "jobTitle": "Product Designer",
+  "hireDate": "2025-03-10T00:00:00Z",
+  "salary": 88000,
+  "isActive": true,
+  "address": {
+    "addressLine1": "200 Pine Street",
+    "city": "Seattle",
+    "stateProvince": "Washington",
+    "postalCode": "98101",
+    "country": "United States"
+  }
+}
+
+### Replace an employee
+PUT {{EmployeeManagement.Api_HostAddress}}/api/employees/1
+Content-Type: application/json
+
+{
+  "departmentId": 1,
+  "firstName": "Avery",
+  "lastName": "Chen",
+  "email": "avery.chen@example.com",
+  "phoneNumber": "555-0101",
+  "jobTitle": "Senior Software Engineer",
+  "hireDate": "2024-01-15T00:00:00Z",
+  "salary": 105000,
+  "isActive": true,
+  "address": {
+    "addressLine1": "100 Main Street",
+    "city": "Seattle",
+    "stateProvince": "Washington",
+    "postalCode": "98101",
+    "country": "United States"
+  }
+}
+
+### Delete an employee
+DELETE {{EmployeeManagement.Api_HostAddress}}/api/employees/1
+
+### List departments
+GET {{EmployeeManagement.Api_HostAddress}}/api/departments
+Accept: application/json
+
+### Get a department
+GET {{EmployeeManagement.Api_HostAddress}}/api/departments/1
+Accept: application/json
+
+### Create a department
+POST {{EmployeeManagement.Api_HostAddress}}/api/departments
+Content-Type: application/json
+
+{
+  "name": "Product",
+  "description": "Product design and management."
+}
+
+### Replace a department
+PUT {{EmployeeManagement.Api_HostAddress}}/api/departments/1
+Content-Type: application/json
+
+{
+  "name": "Engineering",
+  "description": "Software engineering and technology."
+}
+
+### Delete a department (returns 409 while employees belong to it)
+DELETE {{EmployeeManagement.Api_HostAddress}}/api/departments/1
+
+### Example not-found response
+GET {{EmployeeManagement.Api_HostAddress}}/api/employees/999999
+Accept: application/json
